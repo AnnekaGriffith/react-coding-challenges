@@ -19,6 +19,6 @@ export class ClassRocket extends Component {
   render() {
     const { initialLaunchTime } = this.state;
 
-    return <RocketCore initialLaunchTime={initialLaunchTime} />;
+    return <RocketCore initialLaunchTime="null" />;
   }
 }

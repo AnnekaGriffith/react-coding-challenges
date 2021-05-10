@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import React, { useEffect, useCallback } from "react";
 import io from 'socket.io-client';
 import useSound from 'use-sound';
 import config from '../../../config';
@@ -14,6 +15,7 @@ const socket = io(
   { transports: ['websocket', 'polling', 'flashsocket'] }
 );
 
+
 function Messages() {
   const [playSend] = useSound(config.SEND_AUDIO_URL);
   const [playReceive] = useSound(config.RECEIVE_AUDIO_URL);
@@ -24,7 +26,7 @@ function Messages() {
       <Header />
       <div className="messages__list" id="message-list">
       </div>
-      <Footer message={message} sendMessage={sendMessage} onChangeMessage={onChangeMessage} />
+      <Footer message={message => message.BOT_SERVER_ENDPOINT(websocket)} sendMessage={sendMessage} onChangeMessage={onChangeMessage} />
     </div>
   );
 }
